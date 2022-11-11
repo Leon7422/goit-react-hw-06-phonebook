@@ -31,7 +31,6 @@ export const Phonebook = () => {
   };
 
   const normilezedFilter = filteredContacts.value.toLowerCase();
-  console.log(actualContacts.value);
   const visibleContacts = actualContacts.value.filter(el => {
     return el.name.toLowerCase().includes(normilezedFilter);
   });
