@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/action';
+import { addContact } from 'redux/contactsSlice';
 
 export const Phonebook = () => {
   const [contacts, setContacts] = useState(
@@ -37,13 +37,11 @@ export const Phonebook = () => {
   };
 
   const formSubmitHandler = data => {
-    /*     const userInfo = checkContactsDublicate(data);
+    const userInfo = checkContactsDublicate(data);
     if (userInfo) {
       return alert(`${userInfo.name} is already in contact`);
     }
-
-    const newContact = { id: nanoid(), ...data };
-    setContacts(prev => [newContact, ...prev]); */
+    // НЕ ПРАЦЮЄ ПЕРЕВІРКА КОНТАКТІВ, ГЛЯНУТИ ЧОМУ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     dispatch(addContact(data.name, data.number));
   };
 
