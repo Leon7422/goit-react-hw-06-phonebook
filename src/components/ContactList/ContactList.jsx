@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { UserList } from './ContactList.styled';
+import { getContacts } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 import { ContactItem } from './ContactItem/ContactItem';
-export const ContactList = ({ actualData, deleteContact }) => {
+export const ContactList = () => {
+  const contacts = useSelector(getContacts);
+  console.log(contacts);
   return (
     <UserList>
-      {actualData.map(contact => {
+      {contacts.map(contact => {
         return (
           <ContactItem
             key={contact.id}
             id={contact.id}
             name={contact.name}
             number={contact.number}
-            deleteContact={deleteContact}
           />
         );
       })}

@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Container } from './App.styled';
-import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/action';
 
 export const Phonebook = () => {
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('contacts')) ?? []
   );
   const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -35,13 +37,14 @@ export const Phonebook = () => {
   };
 
   const formSubmitHandler = data => {
-    const userInfo = checkContactsDublicate(data);
+    /*     const userInfo = checkContactsDublicate(data);
     if (userInfo) {
       return alert(`${userInfo.name} is already in contact`);
     }
 
     const newContact = { id: nanoid(), ...data };
-    setContacts(prev => [newContact, ...prev]);
+    setContacts(prev => [newContact, ...prev]); */
+    dispatch(addContact(data.name, data.number));
   };
 
   const normilezedFilter = filter.toLowerCase();
