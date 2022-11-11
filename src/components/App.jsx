@@ -13,7 +13,7 @@ export const Phonebook = () => {
   const dispatch = useDispatch();
 
   const checkContactsDublicate = data => {
-    const userData = actualContacts.find(contact => {
+    const userData = actualContacts.value.find(contact => {
       if (contact.name === data.name) {
         return data.name;
       }
@@ -31,7 +31,8 @@ export const Phonebook = () => {
   };
 
   const normilezedFilter = filteredContacts.value.toLowerCase();
-  const visibleContacts = actualContacts.filter(el => {
+  console.log(actualContacts.value);
+  const visibleContacts = actualContacts.value.filter(el => {
     return el.name.toLowerCase().includes(normilezedFilter);
   });
 
