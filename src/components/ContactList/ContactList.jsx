@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { UserList } from './ContactList.styled';
-import { getContacts } from 'redux/selectors';
-import { useSelector } from 'react-redux';
 
 import { ContactItem } from './ContactItem/ContactItem';
-export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  console.log(contacts);
+export const ContactList = ({ actualData }) => {
   return (
     <UserList>
-      {contacts.map(contact => {
+      {actualData.map(contact => {
         return (
           <ContactItem
             key={contact.id}
@@ -32,5 +28,4 @@ ContactList.propTypes = {
       number: PropTypes.string,
     })
   ),
-  deleteContact: PropTypes.func,
 };
